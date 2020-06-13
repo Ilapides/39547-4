@@ -13,8 +13,8 @@ DO NOT DELETE YOUR FEATURE BRANCHES. Keep them even after they are merged :)
 NOTE: do not push node_modules to your git repos! You should have node_modules in your .gitignore file. Please message me if you don’t know how to set that up.    
 
 Assignment:
-Based on the in-class demonstration, complete the following user stories:
-As a user, I can:
+Based on the in-class demonstration, complete the following user stories:  
+As a user, I can:  
 add rows to the grid  
 add columns to the grid  
 remove rows from the grid  
