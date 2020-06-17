@@ -6,14 +6,40 @@ class Grid extends Component{
 		super(props);
 
 		this.state = {
-			rows: this.props.rows,
-			numRows: this.props.numRows,
-			numCols: this.props.numCols,
+			rows: [],
+			numRows: 0,
+			numCols: 0,
 			chosenColor: this.props.chosenColor
     	};
 	}
 	
-	//addRow()
+	addRow = () => {
+		const currentNumRows = this.state.numRows;
+		const currentNumCols = this.state.numCols;
+		if (currentNumRows == 0){
+			this.setState({
+				numRows: 1,
+				numCols: 1
+			});
+		}
+		else {
+			this.setState({numRows: currentNumRows + 1});
+		}
+		let addedRow = <Row
+			ref = {nextRow => this.nextRow = nextRow}
+			numCols = {currentNumCols}
+			chosenColor = {this.state.chosenColor}
+		/>;
+		if (this.state.numRows === 1){
+			var currentRows = [addedRow];
+		}
+		else{
+			var currentRows = this.state.rows;
+			currentRows.push(addedRow);
+		}
+		console.log(this.state.numRows);
+		this.setState({rows: currentRows});
+	}
 
 	makeRows = () => {
 		let currentRows = [];
@@ -33,7 +59,7 @@ class Grid extends Component{
 	render(){
       return (
          <table><tbody>
-			{this.makeRows()}
+			{this.state.rows}
 			</tbody></table>
       );
    }

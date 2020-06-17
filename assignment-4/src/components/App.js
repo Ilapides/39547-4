@@ -7,6 +7,13 @@ class App extends Component{
    	super(props);
 		 
 		this.state = {
+			// grid: <Grid 
+			// 	// I think this might all be unnecessary
+			// 	rows={[]} 
+			// 	numRows={0} 
+			// 	numCols={0} 
+			// 	//chosenColor={this.state.chosenColor} 
+			// />,
 			rows: [],
 			numRows: 0,
 			numCols: 0,
@@ -14,46 +21,16 @@ class App extends Component{
 		};
   	}
 
-
 	addRow = () => {
-		console.log(this.state.numRows);
-		const currentNumRows = this.state.numRows;
-    	if (currentNumRows === 0){
-			this.setState({
-				numRows: 1,
-				numCols: 1
-			});
-		}
-		else {
-			this.setState({numRows: currentNumRows + 1});
-		}
-		let currentRows = this.state.rows;
-		currentRows.push(<Row numCols = {this.state.numCols}></Row>);
-      // 	let newCell = "placeholder";
-      // 	let newRow = [];
-      // 	newRow.push(newCell);
-      // 	existingRows.push(newRow);
-    	// }
-    	// else{
-      // 	let newRow = [];
-      // 	for (let i = 0; i < this.numRows; i++){
-      //   		let newCell = "placeholder";
-      //   		newRow.push(newCell);
-      // 	}
-      // 	existingRows.push(newRow);
-		// }
-
+		this.grid.addRow();
 	}
 
 	render(){
    	return(
       	<div>
-        		<button onClick = {this.addRow}>Add Row</button>
-				<Grid 
-					rows={this.state.rows} 
-					numRows={this.state.numRows} 
-					numCols={this.state.numCols} 
-					chosenColor={this.state.chosenColor} 
+        		<button onClick = {this.addRow.bind(this)}>Add Row</button>
+				<Grid ref={grid => this.grid = grid}
+					chosenColor = {this.state.chosenColor}
 				/>
       	</div>
     	);

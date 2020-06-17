@@ -6,22 +6,31 @@ class Row extends Component{
 		super(props);
 		console.log("hello");
 		this.state = {
-			thisRow: [],
 			numCols: this.props.numCols,
-			chosenColor: "white"
-    	};
+			chosenColor: this.props.chosenColor,
+			thisRow: this.makeRow(this.props.numCols, this.props.chosenColor),
+		};
+		//this.Row = this.Row.bind(this);
 	}
 
-	makeRow = () => {
+	addCell = () => {
+		let currentRow = this.state.thisRow;
+		let newCell = <Cell chosenColor = {this.state.chosenColor}/>;
+		currentRow.push(newCell);
+		this.setState({thisRow: currentRow});
+	}
+
+	makeRow = (numColumns, chosenColor) => {
 		let row = [];
-		for (let i = 0; i < this.numCols; i++){
-			row.push(<Cell chosenColor = {this.state.chosenColor}/>);
+		console.log(this);
+		for (let i = 0; i < numColumns; i++){
+			row.push(<Cell chosenColor = {chosenColor}/>);
 		}
 		return row;
 	}
 	
 	render(){
-		return (<tr>{this.makeRow()}</tr>);
+		return (<tr>{this.state.thisRow}</tr>);
    }
 }
 
