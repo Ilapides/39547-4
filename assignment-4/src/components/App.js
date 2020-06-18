@@ -21,14 +21,44 @@ class App extends Component{
 		};
   	}
 
+	// addRow = () => {
+	// 	this.grid.addRow();
+	// }
+
 	addRow = () => {
-		this.grid.addRow();
+		var currentRows = this.state.rows;
+		console.log(this.state.numRows);
+		const currentNumRows = this.state.numRows;
+		const currentNumCols = this.state.numCols;
+		if (currentNumRows === 0){
+			this.setState({
+				numRows: 1,
+				numCols: 1
+			});
+		}
+		else {
+			this.setState({numRows: currentNumRows + 1});
+		}
+		let addedRow = <Row
+			ref = {nextRow => this.nextRow = nextRow}
+			numCols = {currentNumCols}
+			chosenColor = {this.state.chosenColor}
+		/>;
+		if (this.state.numRows === 1){
+			var currentRows = [addedRow];
+		}
+		else{
+			var currentRows = this.state.rows;
+			currentRows.push(addedRow);
+		}
+		console.log(this.state.numRows);
+		this.setState({rows: currentRows});
 	}
 
 	render(){
    	return(
       	<div>
-        		<button onClick = {this.addRow.bind(this)}>Add Row</button>
+        		<button onClick = {this.addRow}>Add Row</button>
 				<Grid ref={grid => this.grid = grid}
 					chosenColor = {this.state.chosenColor}
 				/>
