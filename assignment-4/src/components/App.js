@@ -94,12 +94,39 @@ class App extends Component{
 		}
 	}
 
+	removeCol = () => {
+		const currentNumCols = this.state.numCols;
+		const currentNumRows = this.state.numRows;
+		if (currentNumCols < 2){
+			this.setState(
+				{
+					numRows: 0,
+					numCols: 0,
+					rows: [],
+				},	
+			);
+		}
+		else{
+			let currentRows = this.state.rows;
+			for (let i = 0; i < currentNumRows; i++){
+				currentRows[i].pop();
+			}
+			this.setState(
+				{
+					numCols: currentNumCols - 1,
+					rows: currentRows
+				}
+			);
+		}
+	}
+
 	render(){
    	return(
 			<div>
 				<button onClick = {this.addRow}>Add Row</button>
 				<button onClick = {this.addCol}>Add Column</button>
-				<button onClick = {this.removeRow}>Remove Row</button>			
+				<button onClick = {this.removeRow}>Remove Row</button>
+				<button onClick = {this.removeCol}>Remove Column</button>			
 				<table>
 					<Grid 
 						rows = {this.state.rows}
