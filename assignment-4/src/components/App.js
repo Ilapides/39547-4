@@ -17,7 +17,8 @@ class App extends Component{
 			rows: [],
 			numRows: 0,
 			numCols: 0,
-			chosenColor: "white"
+			chosenColor: "white",
+			depressed: false,
 		};
   	}
 
@@ -26,6 +27,7 @@ class App extends Component{
 	// }
 
 	addRow = () => {
+		let addedRow = [];
 		var currentRows = this.state.rows;
 		const currentNumRows = this.state.numRows;
 		const currentNumCols = this.state.numCols;
@@ -39,6 +41,8 @@ class App extends Component{
 					console.log(this.state.numRows);
 				}	
 			);
+			let addedCell = "white";
+			addedRow.push(addedCell);
 		}
 		else {
 			this.setState(
@@ -46,34 +50,32 @@ class App extends Component{
 				function (){
 					console.log(this.state.numRows);
 				}
-				);
+			);
+			for (let i = 0; i < currentNumCols; i++){
+				let addedCell = "white";
+				addedRow.push(addedCell);
+			}
 		}
-		let addedRow = <Row
-			ref = {nextRow => this.nextRow = nextRow}
-			numCols = {currentNumCols}
-			chosenColor = {this.state.chosenColor}
-		/>;
-		if (this.state.numRows === 1){
-			currentRows = [addedRow];
-		}
-		else{
-			currentRows.push(addedRow);
-		}
+		currentRows.push(addedRow);
 		// console.log(this.state.numRows);
 		this.setState({rows: currentRows});
 	}
 
 	render(){
+		const { addRow, addCol, removeRow, removeCol, fillUncolored, fillAll, clear, chooseColor, setCellColor, activeColoring, setActive, setInactive } = this;
+    	const { rows, color, activeDrawing } = this.state;
    	return(
-      	<table>
-        		<button onClick = {this.addRow}>Add Row</button>
-				<Grid 
-					rows = {this.state.rows}
-					numCols = {this.state.numCols}
-					numRows = {this.state.numRows}
-					chosenColor = {this.state.chosenColor}
-				/>
-      	</table>
+			<div>
+				<button onClick = {this.addRow}>Add Row</button>			
+				<table>
+					<Grid 
+						rows = {this.state.rows}
+						numCols = {this.state.numCols}
+						numRows = {this.state.numRows}
+						chosenColor = {this.state.chosenColor}
+					/>
+				</table>
+			</div>
     	);
   	}
 }

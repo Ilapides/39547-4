@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import Row from './Row.js';
 // style
 
-const Grid = ({ rows, color, setCellColor, setActive, activeColoring, activeDrawing, setInactive }) => {
+const Grid = ({ rows, chosenColor, setCellColor, setActive, activeColoring, activeDrawing, setInactive }) => {
    return(
       <tbody
          className="grid-table"
-            // //if mouse leaves gird, sets activeDrawing to false
+            // //if mouse leaves grird, sets activeDrawing to false
             // onMouseLeave={function () { setInactive() }}
             // //if mouseup in grid, sets activeDrawing to false
             // onMouseUp={function () { setInactive() }}
@@ -15,7 +15,7 @@ const Grid = ({ rows, color, setCellColor, setActive, activeColoring, activeDraw
 				<Row
             	key={index}
                cols={col}
-               color={color}
+               chosenColor={chosenColor}
                indexr={index}
                setCellColor={setCellColor}
                setActive={setActive}
