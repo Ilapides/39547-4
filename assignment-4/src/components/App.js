@@ -43,6 +43,34 @@ class App extends Component{
 		this.setState({rows: currentRows});
 	}
 
+	addCol = () => {
+		var currentRows = this.state.rows;
+		const currentNumRows = this.state.numRows;
+		const currentNumCols = this.state.numCols;
+		if (currentNumRows === 0){
+			let addedRow = [];
+			let addedCell = "white";
+			addedRow.push(addedCell);			
+			currentRows.push(addedRow);
+			this.setState(
+				{
+					numRows: 1,
+					numCols: 1,
+				},	
+			);
+		}
+		else {
+			this.setState(
+				{numCols: currentNumCols + 1},
+			);
+			for (let i = 0; i < currentNumRows; i++){
+				let addedCell = "white";
+				currentRows[i].push(addedCell);
+			}
+		}
+		this.setState({rows: currentRows});
+	}
+
 	removeRow = () => {
 		const currentNumRows = this.state.numRows;
 		if (currentNumRows < 2){
@@ -70,6 +98,7 @@ class App extends Component{
    	return(
 			<div>
 				<button onClick = {this.addRow}>Add Row</button>
+				<button onClick = {this.addCol}>Add Column</button>
 				<button onClick = {this.removeRow}>Remove Row</button>			
 				<table>
 					<Grid 
