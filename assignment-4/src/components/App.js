@@ -120,10 +120,25 @@ class App extends Component{
 		}
 	}
 
-	selectColor = (value) => {
+	selectColor = (selection) => {
 		this.setState({ 
-			chosenColor: value 
+			chosenColor: selection.target.value 
 		});
+	}
+
+	fillAll = () => {
+		const currentNumCols = this.state.numCols;
+		const currentNumRows = this.state.numRows;
+		const selectedColor = this.state.chosenColor;
+		var currentRows = this.state.rows;
+		for (let i = 0; i < currentNumRows; i++){
+			for (let j = 0; j < currentNumCols; j++){
+				currentRows[i][j] = selectedColor;
+			}
+		}
+		this.setState({
+			rows: currentRows
+		})
 	}
 
 	clearAll = () => {
@@ -157,6 +172,7 @@ class App extends Component{
           		<option value="Indigo">Blue</option>
           		<option value="Violet">Yellow</option>
         		</select>
+				<button onClick = {this.fillAll}>Fill All</button>
 				<button onClick = {this.clearAll}>Reset Colors</button>			
 				<table>
 					<Grid 
