@@ -120,13 +120,28 @@ class App extends Component{
 		}
 	}
 
+	clearAll = () => {
+		const currentNumCols = this.state.numCols;
+		const currentNumRows = this.state.numRows;
+		var currentRows = this.state.rows;
+		for (let i = 0; i < currentNumRows; i++){
+			for (let j = 0; j < currentNumCols; j++){
+				currentRows[i][j] = "white";
+			}
+		}
+		this.setState({
+			rows: currentRows
+		})
+	}
+
 	render(){
    	return(
 			<div>
 				<button onClick = {this.addRow}>Add Row</button>
 				<button onClick = {this.addCol}>Add Column</button>
 				<button onClick = {this.removeRow}>Remove Row</button>
-				<button onClick = {this.removeCol}>Remove Column</button>			
+				<button onClick = {this.removeCol}>Remove Column</button>
+				<button onClick = {this.clearAll}>Rest Colors</button>			
 				<table>
 					<Grid 
 						rows = {this.state.rows}
