@@ -10,7 +10,7 @@ class App extends Component{
 			rows: [],
 			numRows: 0,
 			numCols: 0,
-			chosenColor: "white",
+			chosenColor: "White",
 			depressed: false,
 		};
   	}
@@ -27,7 +27,7 @@ class App extends Component{
 					numCols: 1
 				},	
 			);
-			let addedCell = "white";
+			let addedCell = "White";
 			addedRow.push(addedCell);
 		}
 		else {
@@ -35,7 +35,7 @@ class App extends Component{
 				{numRows: currentNumRows + 1},
 			);
 			for (let i = 0; i < currentNumCols; i++){
-				let addedCell = "white";
+				let addedCell = "White";
 				addedRow.push(addedCell);
 			}
 		}
@@ -49,7 +49,7 @@ class App extends Component{
 		const currentNumCols = this.state.numCols;
 		if (currentNumRows === 0){
 			let addedRow = [];
-			let addedCell = "white";
+			let addedCell = "White";
 			addedRow.push(addedCell);			
 			currentRows.push(addedRow);
 			this.setState(
@@ -64,7 +64,7 @@ class App extends Component{
 				{numCols: currentNumCols + 1},
 			);
 			for (let i = 0; i < currentNumRows; i++){
-				let addedCell = "white";
+				let addedCell = "White";
 				currentRows[i].push(addedCell);
 			}
 		}
@@ -141,13 +141,29 @@ class App extends Component{
 		})
 	}
 
+	fillUncolored = () => {
+		const currentNumCols = this.state.numCols;
+		const currentNumRows = this.state.numRows;
+		const selectedColor = this.state.chosenColor;
+		var currentRows = this.state.rows;
+		for (let i = 0; i < currentNumRows; i++){
+			for (let j = 0; j < currentNumCols; j++){
+				if (currentRows[i][j] === "White")
+					currentRows[i][j] = selectedColor;
+			}
+		}
+		this.setState({
+			rows: currentRows
+		})
+	}
+
 	clearAll = () => {
 		const currentNumCols = this.state.numCols;
 		const currentNumRows = this.state.numRows;
 		var currentRows = this.state.rows;
 		for (let i = 0; i < currentNumRows; i++){
 			for (let j = 0; j < currentNumCols; j++){
-				currentRows[i][j] = "white";
+				currentRows[i][j] = "White";
 			}
 		}
 		this.setState({
@@ -173,6 +189,7 @@ class App extends Component{
           		<option value="Violet">Yellow</option>
         		</select>
 				<button onClick = {this.fillAll}>Fill All</button>
+				<button onClick = {this.fillUncolored}>Fill Uncolored</button>
 				<button onClick = {this.clearAll}>Reset Colors</button>			
 				<table>
 					<Grid 
