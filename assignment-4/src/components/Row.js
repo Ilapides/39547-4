@@ -8,7 +8,7 @@ class Row extends Component{
 		this.state = {
 			numCols: this.props.numCols,
 			chosenColor: this.props.chosenColor,
-			thisRow: this.makeRow(this.props.numCols, this.props.chosenColor),
+			thisRow: this.props.thisRow,
 		};
 		//this.Row = this.Row.bind(this);
 	}

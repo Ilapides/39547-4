@@ -27,17 +27,26 @@ class App extends Component{
 
 	addRow = () => {
 		var currentRows = this.state.rows;
-		console.log(this.state.numRows);
 		const currentNumRows = this.state.numRows;
 		const currentNumCols = this.state.numCols;
 		if (currentNumRows === 0){
-			this.setState({
-				numRows: 1,
-				numCols: 1
-			});
+			this.setState(
+				{
+					numRows: 1,
+					numCols: 1
+				},
+				function (){
+					console.log(this.state.numRows);
+				}	
+			);
 		}
 		else {
-			this.setState({numRows: currentNumRows + 1});
+			this.setState(
+				{numRows: currentNumRows + 1},
+				function (){
+					console.log(this.state.numRows);
+				}
+				);
 		}
 		let addedRow = <Row
 			ref = {nextRow => this.nextRow = nextRow}
@@ -45,24 +54,26 @@ class App extends Component{
 			chosenColor = {this.state.chosenColor}
 		/>;
 		if (this.state.numRows === 1){
-			var currentRows = [addedRow];
+			currentRows = [addedRow];
 		}
 		else{
-			var currentRows = this.state.rows;
 			currentRows.push(addedRow);
 		}
-		console.log(this.state.numRows);
+		// console.log(this.state.numRows);
 		this.setState({rows: currentRows});
 	}
 
 	render(){
    	return(
-      	<div>
+      	<table>
         		<button onClick = {this.addRow}>Add Row</button>
-				<Grid ref={grid => this.grid = grid}
+				<Grid 
+					rows = {this.state.rows}
+					numCols = {this.state.numCols}
+					numRows = {this.state.numRows}
 					chosenColor = {this.state.chosenColor}
 				/>
-      	</div>
+      	</table>
     	);
   	}
 }
