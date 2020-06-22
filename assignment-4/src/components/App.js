@@ -120,6 +120,12 @@ class App extends Component{
 		}
 	}
 
+	selectColor = (value) => {
+		this.setState({ 
+			chosenColor: value 
+		});
+	}
+
 	clearAll = () => {
 		const currentNumCols = this.state.numCols;
 		const currentNumRows = this.state.numRows;
@@ -141,7 +147,17 @@ class App extends Component{
 				<button onClick = {this.addCol}>Add Column</button>
 				<button onClick = {this.removeRow}>Remove Row</button>
 				<button onClick = {this.removeCol}>Remove Column</button>
-				<button onClick = {this.clearAll}>Rest Colors</button>			
+				<select onChange={this.selectColor}>
+          		<option value="White">White</option>
+          		<option value="Red">Red</option>
+          		<option value="Orange">Green</option>
+          		<option value="Yellow">Blue</option>
+          		<option value="Green">Yellow</option>
+					<option value="Blue">Green</option>
+          		<option value="Indigo">Blue</option>
+          		<option value="Violet">Yellow</option>
+        		</select>
+				<button onClick = {this.clearAll}>Reset Colors</button>			
 				<table>
 					<Grid 
 						rows = {this.state.rows}
