@@ -7,13 +7,6 @@ class App extends Component{
    	super(props);
 		 
 		this.state = {
-			// grid: <Grid 
-			// 	// I think this might all be unnecessary
-			// 	rows={[]} 
-			// 	numRows={0} 
-			// 	numCols={0} 
-			// 	//chosenColor={this.state.chosenColor} 
-			// />,
 			rows: [],
 			numRows: 0,
 			numCols: 0,
@@ -21,10 +14,6 @@ class App extends Component{
 			depressed: false,
 		};
   	}
-
-	// addRow = () => {
-	// 	this.grid.addRow();
-	// }
 
 	addRow = () => {
 		let addedRow = [];
@@ -36,10 +25,7 @@ class App extends Component{
 				{
 					numRows: 1,
 					numCols: 1
-				},
-				function (){
-					console.log(this.state.numRows);
-				}	
+				},	
 			);
 			let addedCell = "white";
 			addedRow.push(addedCell);
@@ -47,9 +33,6 @@ class App extends Component{
 		else {
 			this.setState(
 				{numRows: currentNumRows + 1},
-				function (){
-					console.log(this.state.numRows);
-				}
 			);
 			for (let i = 0; i < currentNumCols; i++){
 				let addedCell = "white";
@@ -57,13 +40,10 @@ class App extends Component{
 			}
 		}
 		currentRows.push(addedRow);
-		// console.log(this.state.numRows);
 		this.setState({rows: currentRows});
 	}
 
 	render(){
-		const { addRow, addCol, removeRow, removeCol, fillUncolored, fillAll, clear, chooseColor, setCellColor, activeColoring, setActive, setInactive } = this;
-    	const { rows, color, activeDrawing } = this.state;
    	return(
 			<div>
 				<button onClick = {this.addRow}>Add Row</button>			
