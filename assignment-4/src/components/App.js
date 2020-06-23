@@ -88,6 +88,9 @@ class App extends Component{
 		}
 		// Update table state
 		this.setState({rows: currentRows});
+
+		// Need to bind App's `this` for functions passed to Cell
+		this.colorCell = this.colorCell.bind(this);
 	}
 
 	// Remove row function
@@ -152,15 +155,16 @@ class App extends Component{
 		});
 	}
 
-	// Unimplemented attempt at DRY function which can implement all three mass change functions
-	changeAll = (newColor, onlyBlank) => {
+	// DRY function which implements all three mass change functions
+	changeAll(newColor, onlyBlank) {
+		var selectedColor;
 		const currentNumCols = this.state.numCols;
 		const currentNumRows = this.state.numRows;
 		if (newColor) {
-			var selectedColor = this.state.chosenColor;
+			selectedColor = this.state.chosenColor;
 		}
 		else {
-			var selectedColor = "White";
+			selectedColor = "White";
 		}
 		var currentRows = this.state.rows;
 		for (let i = 0; i < currentNumRows; i++){
@@ -172,61 +176,38 @@ class App extends Component{
 		}
 		this.setState({
 			rows: currentRows
-		})
+		});
 	}
 
 	// Fill All with chosen color function
 	fillAll = () => {
-		const currentNumCols = this.state.numCols;
-		const currentNumRows = this.state.numRows;
-		const selectedColor = this.state.chosenColor;
-		var currentRows = this.state.rows;
-		// For each cell, change it to the chosen color
-		for (let i = 0; i < currentNumRows; i++){
-			for (let j = 0; j < currentNumCols; j++){
-				currentRows[i][j] = selectedColor;
-			}
-		}
-		this.setState({
-			rows: currentRows
-		})
+		this.changeAll(true, false);
 	}
 
 
 	// Fill All Uncolored with chosen color function
 	fillUncolored = () => {
-		const currentNumCols = this.state.numCols;
-		const currentNumRows = this.state.numRows;
-		const selectedColor = this.state.chosenColor;
-		var currentRows = this.state.rows;
-		// For each cell which is white, change it to the chosen color
-		for (let i = 0; i < currentNumRows; i++){
-			for (let j = 0; j < currentNumCols; j++){
-				if (currentRows[i][j] === "White")
-					currentRows[i][j] = selectedColor;
-			}
-		}
-		this.setState({
-			rows: currentRows
-		})
+		this.changeAll(true, true);
 	}
 
 
 	// Clear All function
 	clearAll = () => {
-		const currentNumCols = this.state.numCols;
-		const currentNumRows = this.state.numRows;
+		this.changeAll(false, false);
+	}
+
+	// Cell coloring function
+	// To be passed as a prop to grid -> row -> cell
+
+	colorCell = (rowIndex, colIndex) => {
 		var currentRows = this.state.rows;
-		// Change each cell to white
-		for (let i = 0; i < currentNumRows; i++){
-			for (let j = 0; j < currentNumCols; j++){
-				currentRows[i][j] = "White";
-			}
-		}
+		const currentColor = this.state.chosenColor;
+		currentRows[rowIndex][colIndex] = currentColor;
 		this.setState({
 			rows: currentRows
-		})
+		});
 	}
+
 
 	// Render function
 	render(){
@@ -258,7 +239,9 @@ class App extends Component{
 						rows = {this.state.rows}
 						numCols = {this.state.numCols}
 						numRows = {this.state.numRows}
-						chosenColor = {this.state.chosenColor}
+						colorCell = {this.colorCell}
+						// chosenColor = {this.state.chosenColor} // grid doesn't need to know this
+
 					/>
 				</table>
 			</div>
