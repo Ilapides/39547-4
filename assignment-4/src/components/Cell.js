@@ -1,6 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import '../styles/Cell.css';
 
+/*
+	Cell is a display object
+	It takes props
+	And returns a <td> element with a background color
+*/
 const Cell = (props) => {
 	return (
 		<td

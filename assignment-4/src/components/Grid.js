@@ -1,7 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Row from './Row.js';
 // style
 
+/*
+   Grid is a display object
+   It takes the rows array from app
+   And displays a table of Row objects
+*/
 const Grid = ({rows}) => {
    return(
       <tbody>
