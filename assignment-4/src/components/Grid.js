@@ -1,6 +1,5 @@
 import React from 'react';
 import Row from './Row.js';
-// style
 
 /*
    Grid is a display object
@@ -9,7 +8,7 @@ import Row from './Row.js';
 */
 const Grid = ({rows, clickColorCell, dragColorCell, depress}) => {
    return(
-      <tbody>
+      <tbody className = "centerTable">
          {rows.map((col, index) => (
 				<Row
             	rowIndex = {index}

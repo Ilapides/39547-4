@@ -1,0 +1,11 @@
+.center {
+	margin: auto;
+	width: 75%;
+	border: 3px solid black;
+	padding: 10px;
+	background-color: paleturquoise;
+ }
+
+body {
+	background-color: lightblue;
+}

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Grid from "./Grid.js"
 import Buttons from "./Buttons.js"
+import '../styles/App.css';
+
 
 /*
 	App is a control component
@@ -249,7 +251,7 @@ class App extends Component{
 				/>
 				{/* Table Object holding Grid */}			
 				<table>
-					<Grid 
+					<Grid className = "center"
 						// 2D array of colored cells
 						rows = {this.state.rows}
 						// Tally of dimensions
