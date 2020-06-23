@@ -1,20 +1,24 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Cell from './Cell.js';
 
-class Row extends Component{
-	
-	render(){
-		return (
-			<tr>
-				{this.props.cols.map((cellColor, index) => 
-					<Cell
-               	cellColor={cellColor}
-               	key={index}
-					/>
-				)}
-			</tr>
-		);
-   }
+/*
+	Row is a display component
+	It takes props
+	And returns a <tr> of Cell objects
+*/
+const Row = (props) => {
+	return (
+		// For each element of a row array,
+		// Map it to a Cell object with a given color
+		<tr>
+			{props.cols.map((cellColor, index) => 
+				<Cell
+					cellColor={cellColor}
+					key={index}
+				/>
+			)}
+		</tr>
+	);
 }
 
 export default Row;
