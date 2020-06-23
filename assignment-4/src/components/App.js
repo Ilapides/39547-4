@@ -192,6 +192,7 @@ class App extends Component{
 		})
 	}
 
+
 	// Fill All Uncolored with chosen color function
 	fillUncolored = () => {
 		const currentNumCols = this.state.numCols;
@@ -209,6 +210,7 @@ class App extends Component{
 			rows: currentRows
 		})
 	}
+
 
 	// Clear All function
 	clearAll = () => {
