@@ -14,9 +14,27 @@ const Cell = (props) => {
 			style={{
 				backgroundColor: props.cellColor
 			}}
-			onClick = {() => {
-				props.colorCell(props.rowIndex, props.colIndex);
-			}}
+			onMouseClick = {
+				() => {
+					let isClick = true;
+					props.colorCell(props.rowIndex, props.colIndex, isClick)
+				}
+			}
+			onMouseDown = { 
+				() => {
+					props.depress(true);
+				}
+			}
+			onMouseUp = {
+				() => {
+					props.depress(false);
+				}
+			}
+			onMouseOver = {
+				() => {
+					props.colorCell(props.rowIndex, props.colIndex, false);
+				}
+			}
 		/>
 	);
 }

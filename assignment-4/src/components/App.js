@@ -20,6 +20,8 @@ class App extends Component{
 			chosenColor: "White",
 			depressed: false,
 		};
+
+		this.depress = this.depress.bind(this);
   	}
 
 	// Add Row function
@@ -90,7 +92,7 @@ class App extends Component{
 		this.setState({rows: currentRows});
 
 		// Need to bind App's `this` for functions passed to Cell
-		this.colorCell = this.colorCell.bind(this);
+
 	}
 
 	// Remove row function
@@ -198,8 +200,10 @@ class App extends Component{
 
 	// Cell coloring function
 	// To be passed as a prop to grid -> row -> cell
+	colorCell = (rowIndex, colIndex, isClick) => {
+		if (isClick) console.log("click");
+		if (!(isClick || this.state.depressed)) return;
 
-	colorCell = (rowIndex, colIndex) => {
 		var currentRows = this.state.rows;
 		const currentColor = this.state.chosenColor;
 		currentRows[rowIndex][colIndex] = currentColor;
@@ -208,6 +212,19 @@ class App extends Component{
 		});
 	}
 
+	depress(toggle) {
+		if (toggle) {
+			// console.log(this);
+			this.setState({
+				depressed: true
+			});
+		}
+		else {
+			this.setState({
+				depressed: false
+			});
+		}
+	}
 
 	// Render function
 	render(){
@@ -236,12 +253,15 @@ class App extends Component{
 				{/* Table Object holding Grid */}			
 				<table>
 					<Grid 
+						// 2D array of colored cells
 						rows = {this.state.rows}
+						// Tally of dimensions
 						numCols = {this.state.numCols}
 						numRows = {this.state.numRows}
+						// Cell-coloring function
 						colorCell = {this.colorCell}
-						// chosenColor = {this.state.chosenColor} // grid doesn't need to know this
-
+						// Depress toggle function
+						depress = {this.depress}
 					/>
 				</table>
 			</div>

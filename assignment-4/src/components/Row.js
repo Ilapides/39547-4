@@ -13,10 +13,15 @@ const Row = (props) => {
 		<tr>
 			{props.cols.map((cellColor, index) => 
 				<Cell
+					// Cell payload: color
 					cellColor = {cellColor}
+					// Indexing to access a specific cell
 					rowIndex = {props.rowIndex}
 					colIndex = {index}
+					// Cell-coloring function
 					colorCell = {props.colorCell}
+					// Depress toggle function
+					depress = {props.depress}
 				/>
 			)}
 		</tr>
