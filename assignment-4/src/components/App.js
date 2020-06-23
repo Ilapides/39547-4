@@ -241,12 +241,12 @@ class App extends Component{
 					<select onChange={this.selectColor}>
 						<option value="White">White</option>
 						<option value="Red">Red</option>
-						<option value="Orange">Green</option>
-						<option value="Yellow">Blue</option>
-						<option value="Green">Yellow</option>
-						<option value="Blue">Green</option>
-						<option value="Indigo">Blue</option>
-						<option value="Violet">Yellow</option>
+						<option value="Orange">Orange</option>
+						<option value="Yellow">Yellow</option>
+						<option value="Green">Green</option>
+						<option value="Blue">Blue</option>
+						<option value="Indigo">Indigo</option>
+						<option value="Violet">Violet</option>
 					</select>
 					<button onClick = {this.fillAll}>Fill All</button>
 					<button onClick = {this.fillUncolored}>Fill All Uncolored</button>
