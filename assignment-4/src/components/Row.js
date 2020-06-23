@@ -13,8 +13,10 @@ const Row = (props) => {
 		<tr>
 			{props.cols.map((cellColor, index) => 
 				<Cell
-					cellColor={cellColor}
-					key={index}
+					cellColor = {cellColor}
+					rowIndex = {props.rowIndex}
+					colIndex = {index}
+					colorCell = {props.colorCell}
 				/>
 			)}
 		</tr>
