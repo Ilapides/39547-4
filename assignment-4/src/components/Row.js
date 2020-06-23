@@ -18,8 +18,9 @@ const Row = (props) => {
 					// Indexing to access a specific cell
 					rowIndex = {props.rowIndex}
 					colIndex = {index}
-					// Cell-coloring function
-					colorCell = {props.colorCell}
+					// Cell-coloring functions
+					clickColorCell = {props.clickColorCell}
+					dragColorCell = {props.dragColorCell}
 					// Depress toggle function
 					depress = {props.depress}
 				/>

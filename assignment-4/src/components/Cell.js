@@ -14,10 +14,9 @@ const Cell = (props) => {
 			style={{
 				backgroundColor: props.cellColor
 			}}
-			onMouseClick = {
+			onClick = {
 				() => {
-					let isClick = true;
-					props.colorCell(props.rowIndex, props.colIndex, isClick)
+					props.clickColorCell(props.rowIndex, props.colIndex)
 				}
 			}
 			onMouseDown = { 
@@ -32,7 +31,7 @@ const Cell = (props) => {
 			}
 			onMouseOver = {
 				() => {
-					props.colorCell(props.rowIndex, props.colIndex, false);
+					props.dragColorCell(props.rowIndex, props.colIndex);
 				}
 			}
 		/>

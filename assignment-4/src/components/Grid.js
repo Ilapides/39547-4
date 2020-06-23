@@ -7,14 +7,15 @@ import Row from './Row.js';
    It takes the rows array from app
    And displays a table of Row objects
 */
-const Grid = ({rows, colorCell, depress}) => {
+const Grid = ({rows, clickColorCell, dragColorCell, depress}) => {
    return(
       <tbody>
          {rows.map((col, index) => (
 				<Row
             	rowIndex = {index}
                cols = {col}
-               colorCell = {colorCell}
+               clickColorCell = {clickColorCell}
+               dragColorCell = {dragColorCell}
                depress = {depress}
 				/>
 			))}

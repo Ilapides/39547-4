@@ -201,6 +201,7 @@ class App extends Component{
 	// Cell coloring function
 	// To be passed as a prop to grid -> row -> cell
 	colorCell = (rowIndex, colIndex, isClick) => {
+		console.log(isClick);
 		if (isClick) console.log("click");
 		if (!(isClick || this.state.depressed)) return;
 
@@ -210,6 +211,15 @@ class App extends Component{
 		this.setState({
 			rows: currentRows
 		});
+	}
+
+	clickColorCell = (rowIndex, colIndex) => {
+		console.log("hellloooo");
+		this.colorCell(rowIndex, colIndex, true);
+	}
+
+	dragColorCell = (rowIndex, colIndex) => {
+		this.colorCell(rowIndex, colIndex, false);
 	}
 
 	depress(toggle) {
@@ -258,8 +268,9 @@ class App extends Component{
 						// Tally of dimensions
 						numCols = {this.state.numCols}
 						numRows = {this.state.numRows}
-						// Cell-coloring function
-						colorCell = {this.colorCell}
+						// Cell-coloring functions
+						clickColorCell = {this.clickColorCell}
+						dragColorCell = {this.dragColorCell}
 						// Depress toggle function
 						depress = {this.depress}
 					/>
