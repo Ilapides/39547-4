@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Grid from "./Grid.js"
+import Buttons from "./Buttons.js"
 
 /*
 	App is a control component
@@ -201,10 +202,7 @@ class App extends Component{
 	// Cell coloring function
 	// To be passed as a prop to grid -> row -> cell
 	colorCell = (rowIndex, colIndex, isClick) => {
-		console.log(isClick);
-		if (isClick) console.log("click");
 		if (!(isClick || this.state.depressed)) return;
-
 		var currentRows = this.state.rows;
 		const currentColor = this.state.chosenColor;
 		currentRows[rowIndex][colIndex] = currentColor;
@@ -214,7 +212,6 @@ class App extends Component{
 	}
 
 	clickColorCell = (rowIndex, colIndex) => {
-		console.log("hellloooo");
 		this.colorCell(rowIndex, colIndex, true);
 	}
 
@@ -224,7 +221,6 @@ class App extends Component{
 
 	depress(toggle) {
 		if (toggle) {
-			// console.log(this);
 			this.setState({
 				depressed: true
 			});
@@ -241,25 +237,16 @@ class App extends Component{
    	return(
 			<div>
 				{/* Button Div */}
-				<div>
-					<button onClick = {this.addRow}>Add Row</button>
-					<button onClick = {this.addCol}>Add Column</button>
-					<button onClick = {this.removeRow}>Remove Row</button>
-					<button onClick = {this.removeCol}>Remove Column</button>
-					<select onChange={this.selectColor}>
-						<option value="White">White</option>
-						<option value="Red">Red</option>
-						<option value="Orange">Orange</option>
-						<option value="Yellow">Yellow</option>
-						<option value="Green">Green</option>
-						<option value="Blue">Blue</option>
-						<option value="Indigo">Indigo</option>
-						<option value="Violet">Violet</option>
-					</select>
-					<button onClick = {this.fillAll}>Fill All</button>
-					<button onClick = {this.fillUncolored}>Fill All Uncolored</button>
-					<button onClick = {this.clearAll}>Reset Colors</button>
-				</div>
+				<Buttons
+					addRow = {this.addRow}
+					addCol = {this.addCol}
+					removeRow = {this.removeRow}
+					removeCol = {this.removeCol}
+					selectColor = {this.selectColor}
+					fillAll = {this.fillAll}
+					fillUncolored = {this.fillUncolored}
+					clearAll = {this.clearAll}
+				/>
 				{/* Table Object holding Grid */}			
 				<table>
 					<Grid 
